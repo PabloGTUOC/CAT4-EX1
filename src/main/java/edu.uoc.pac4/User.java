@@ -1,5 +1,6 @@
 import java.time.LocalDate;
-import edu.uoc.pac4;
+package edu.uoc.pac4;
+package edu.uoc.pac4.exception;
 
 public class User {
     private String name;
@@ -8,7 +9,6 @@ public class User {
     private Gender gender;
     private Address address;
     private double debt;
-    private boolean isPremium;
 
     public User(String name, String email, LocalDate birthDate, Gender gender, Address address) {
         this.name = name;
@@ -16,8 +16,7 @@ public class User {
         this.birthDate = birthDate;
         this.gender = gender;
         this.address = address;
-        this.debt = 0.0;
-        this.isPremium = false;
+        this.debt = 0;
     }
 
     public void setName(String name) {
@@ -48,24 +47,29 @@ public class User {
         this.debt = debt;
     }
 
-    public void addDebt(double debt) {
+    public void addDebt(double debt) throws UserException {
+        if (debt <= 0) {
+            throw new UserException(UserException.ERR_ADD_INVALID_DEBT_VALUE);
+        }
         this.debt += debt;
     }
 
     public void resetDebt() {
-        this.debt = 0.0;
+        this.debt = 0;
     }
 
     public boolean isPremium() {
-        return isPremium;
+        // return true if the user is subscribed as premium
+        // return false otherwise
     }
 
-    public void subscribe() {
-        this.isPremium = true;
+    public void subscribe() throws UserException {
+        // subscribe the user as premium
+        // throw a UserException with ERR_PREMIUM_SUBSCRIPTION message if the user cannot be subscribed as premium
     }
 
     public void unsubscribe() {
-        this.isPremium = false;
+        // unsubscribe the user from premium
     }
 
     public Gender getGender() {
@@ -86,22 +90,11 @@ public class User {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof User)) return false;
-        User user = (User) obj;
-        return name.equals(user.name) && email.equals(user.email);
+        // implement equals method
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", birthDate=" + birthDate +
-                ", gender=" + gender +
-                ", address=" + address +
-                ", debt=" + debt +
-                ", isPremium=" + isPremium +
-                '}';
+        // implement toString method
     }
 }
