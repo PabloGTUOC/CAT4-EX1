@@ -1,3 +1,5 @@
+package edu.uoc.pac4;
+
 public class Address {
     private String street;
     private int number;
@@ -68,3 +70,4 @@ public class Address {
                 '}';
     }
 }
+

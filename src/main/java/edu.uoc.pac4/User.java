@@ -1,7 +1,5 @@
 import java.time.LocalDate;
-
-
-
+import edu.uoc.pac4;
 
 public class User {
     private String name;
